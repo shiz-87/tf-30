@@ -49,7 +49,33 @@
                         </div><!-- /entry-header -->
 
                         <div class="entry-work-body">
-                            <?php the_content(); ?>
+                            <div class="entry-work-content">
+                                <?php the_field('overview'); ?>
+                            </div>
+                            <div class="entry-work-table">
+
+                                <table>
+                                    <?php if (get_field('company')) : ?>
+                                        <tr>
+                                            <th>会社名</th>
+                                            <td><?php the_field('company') ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php if (get_field('url')) : ?>
+                                        <tr>
+                                            <th>サイトURL</th>
+                                            <td><?php the_field('url'); ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                    <?php if (get_field('position')) : ?>
+                                        <tr>
+                                            <th>担当範囲</th>
+                                            <td><?php the_field('position'); ?></td>
+                                        </tr>
+                                    <?php endif; ?>
+                                </table>
+
+                            </div><!-- /entry-work-table -->
                         </div><!-- /entry-work-body" -->
 
                         <div class="entry-work-btn">
