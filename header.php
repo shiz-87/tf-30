@@ -35,14 +35,16 @@
 
                 <!-- drawer-content -->
                 <div class="drawer-content">
+
                     <nav class="drawer-nav">
-                        <ul class="drawer-list">
-                            <li class="m_icon1 menu-item"><a href="#">メニュー1</a></li>
-                            <li class="m_icon2 menu-item"><a href="#">メニュー2</a></li>
-                            <li class="m_icon3 menu-item"><a href="#">メニュー3</a></li>
-                            <li class="m_icon4 menu-item"><a href="#">メニュー4</a></li>
-                            <li class="m_icon5 menu-item"><a href="#">メニュー5</a></li>
-                        </ul>
+                        <?php wp_nav_menu(
+                            array(
+                                'depth' => 1,
+                                'theme_location' => 'drawer-menu',
+                                'container' => false,
+                                'menu_class' => 'drawer-list',
+                            )
+                        ) ?>
                     </nav>
                 </div><!-- /drawer-content -->
             </div><!-- /drawer -->
@@ -53,12 +55,13 @@
     <!-- header-nav -->
     <nav class="header-nav">
         <div class="inner">
-            <ul class="header-list">
-                <li class="m_icon1 menu-item"><a href="#">メニュー1</a></li>
-                <li class="m_icon2 menu-item"><a href="#">メニュー2</a></li>
-                <li class="m_icon3 menu-item"><a href="#">メニュー3</a></li>
-                <li class="m_icon4 menu-item"><a href="#">メニュー4</a></li>
-                <li class="m_icon5 menu-item"><a href="#">メニュー5</a></li>
-            </ul>
+            <?php wp_nav_menu(
+                array(
+                    'depth' => 1,
+                    'theme_location' => 'global-menu',
+                    'container' => false,
+                    'menu_class' => 'header-list',
+                )
+            ) ?>
         </div><!-- /inner -->
     </nav><!-- header-nav -->

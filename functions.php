@@ -1,6 +1,7 @@
 <?php
 
-function my_setup () {
+function my_setup()
+{
     add_theme_support('post-thumbnails');
     add_theme_support('automatic-feed-links');
     add_theme_support('title-tag');
@@ -14,7 +15,6 @@ function my_setup () {
         'script',
         'style',
     ));
-
 }
 add_action('after_setup_theme', 'my_setup');
 
@@ -25,3 +25,13 @@ function my_script_init()
     wp_enqueue_script('my', get_template_directory_uri() . '/js/script.js', array('jquery'), filemtime(get_template_directory() . '/js/script.js'), true);
 }
 add_action('wp_enqueue_scripts', 'my_script_init');
+
+function my_menu_init()
+{
+    register_nav_menus(array(
+        'global-menu' => 'ヘッダーメニュー',
+        'drawer-menu' => 'ドロワーメニュー',
+        'footer-menu' => 'フッターメニュー',
+    ));
+}
+add_action('after_setup_theme', 'my_menu_init');
