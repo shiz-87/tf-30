@@ -18,13 +18,10 @@
 
                         <!-- entry-header -->
                         <div class="entry-header">
-                            <?php
-                            $category = get_the_category();
-                            if ($category[0]) : ?>
-                                <div class="entry-label">
-                                    <a href="<?php echo get_category_link($category[0]->term_id); ?>"><?php echo $category[0]->cat_name; ?></a>
-                                </div><!-- /entry-item-tag -->
-                            <?php endif; ?>
+                            <div class="entry-label">
+                                <?php my_the_post_category(true); ?>
+                            </div><!-- /entry-item-tag -->
+
                             <h1 class="entry-title"><?php the_title(); ?></h1><!-- /entry-title -->
 
                             <!-- entry-meta -->

@@ -69,14 +69,9 @@
                             <!-- entry-item-body -->
                             <div class="entry-item-body">
                                 <div class="entry-item-meta">
-                                    <?php
-                                    $category = get_the_category();
-                                    if ($category[0]) : ?>
-                                        <div class="entry-item-tag">
-                                            <?php echo $category[0]->cat_name; ?>
-                                        </div>
-                                    <?php endif; ?>
-                                    <!-- /entry-item-tag -->
+                                    <div class="entry-item-tag">
+                                        <?php echo my_the_post_category(false); ?>
+                                    </div><!-- /entry-item-tag -->
                                     <time class="entry-item-published" datetime="<?php the_time('c'); ?>"><?php the_time('Y/m/d'); ?></time>
                                     <!-- /entry-item-published -->
                                 </div><!-- /entry-item-meta -->
