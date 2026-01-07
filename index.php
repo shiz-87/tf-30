@@ -95,12 +95,21 @@
             </div><!-- /entries -->
 
             <!-- pagination -->
-            <div class="pagination">
-                <span class="page-numbers current">1</span>
-                <a class="page-numbers" href="#">2</a>
-                <a class="page-numbers" href="#">3</a>
-                <a class="next page-numbers" href="#"><i class="fas fa-angle-right"></i></a>
-            </div><!-- /pagination -->
+            <?php if (paginate_links()) : ?>
+                <div class="pagination">
+                    <?php
+                    echo paginate_links(
+                        array(
+                            'end_size' => 1,
+                            'mid_size' => 1,
+                            'prev_next' => true, // 「前へ」「次へ」のリンクを表示する場合はtrue
+                            'prev_text' => '<i class="fas fa-angle-left"></i>',
+                            'next_text' => '<i class="fas fa-angle-right"></i>',
+                        )
+                    );
+                    ?>
+                </div><!-- /pagination -->
+            <?php endif; ?>
 
         </main><!-- /primary -->
 
