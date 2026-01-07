@@ -71,12 +71,8 @@
             </div><!-- /entries -->
 
             <!-- pagination -->
-            <div class="pagination">
-                <span class="page-numbers current">1</span>
-                <a class="page-numbers" href="#">2</a>
-                <a class="page-numbers" href="#">3</a>
-                <a class="next page-numbers" href="#"><i class="fas fa-angle-right"></i></a>
-            </div><!-- /pagination -->
+            <?php get_template_part('template-parts/pagination'); ?>
+            <!-- /pagination -->
 
         </main><!-- /primary -->
 
