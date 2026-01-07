@@ -17,10 +17,10 @@
 
             <div class="archive-head m_description">
                 <div class="archive-lead">ARCHIVE</div>
-                <h1 class="archive-title m_category">カテゴリー名</h1><!-- /archive-title -->
+                <h1 class="archive-title m_category"><?php the_archive_title(); ?></h1><!-- /archive-title -->
                 <div class="archive-description">
                     <p>
-                        カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明カテゴリーの説明
+                        <?php the_archive_description(); ?>
                     </p>
                 </div><!-- /archive-description -->
             </div><!-- /archive-head -->
