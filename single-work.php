@@ -35,7 +35,8 @@
 
                         <!-- entry-header -->
                         <div class="entry-header">
-                            <div class="entry-label"><a href="">Webサイト制作</a></div>
+                            <?php $genre_term = get_the_terms(get_the_ID(), 'genre')[0]; ?>
+                            <div class="entry-label"><a href="<?php echo esc_url(get_term_link($genre_term)); ?>"><?php echo esc_html($genre_term->name); ?></a></div>
                             <h1 class="entry-title"><?php the_title(); ?></h1>
 
                             <div class="entry-img">
