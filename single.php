@@ -61,13 +61,17 @@
                             ) ?>
                         </div><!-- /entry-body -->
 
+                        <?php $post_tags = get_the_tags(); ?>
                         <div class="entry-tag-items">
                             <div class="entry-tag-head">タグ</div><!-- /entry-tag-head -->
-                            <div class="entry-tag-item"><a href="">WordPress</a></div><!-- /entry-tag-item -->
-                            <div class="entry-tag-item"><a href="">コーディング</a></div><!-- /entry-tag-item -->
-                            <div class="entry-tag-item"><a href="">フリーランス</a></div><!-- /entry-tag-item -->
+                            <?php if ($post_tags[0]) : ?>
+                                <?php foreach ($post_tags as $tag) : ?>
+                                    <div class="entry-tag-item">
+                                        <a href="<?php echo get_tag_link($tag->term_id); ?>"><?php echo $tag->name; ?></a>
+                                    </div><!-- /entry-tag-item -->
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </div><!-- /entry-tag-items -->
-
 
                         <div class="entry-related">
                             <div class="related-title">関連記事</div>
