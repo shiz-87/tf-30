@@ -73,53 +73,55 @@
                             <?php endif; ?>
                         </div><!-- /entry-tag-items -->
 
-                        <div class="entry-related">
-                            <div class="related-title">関連記事</div>
+                        <?php
+                        // 1. 現在の記事のカテゴリー情報を取得
+                        $categories = get_the_category();
+                        $cat_id = array();
 
-                            <div class="related-items">
+                        foreach ($categories as $category) {
+                            $cat_id[] = $category->term_id;
+                        }
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                        // 2. 関連記事のクエリを作成
+                        $args = array(
+                            'post_type' => 'post',
+                            'post__not_in' => array(get_the_ID()),
+                            'posts_per_page' => 8,
+                            'category__in' => $cat_id,
+                            'orderby' => 'rand',
+                        );
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                        $related_query = new WP_Query($args);
+                        ?>
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                        <?php if ($related_query->have_posts()) : // 関連記事がある場合のみ表示
+                        ?>
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                            <div class="entry-related">
+                                <div class="related-title">関連記事</div>
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                                <div class="related-items">
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                                    <?php while ($related_query->have_posts()) : $related_query->the_post(); ?>
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                                        <a class="related-item" href="<?php the_permalink(); ?>">
+                                            <div class="related-item-img">
+                                                <?php if (has_post_thumbnail()) : ?>
+                                                    <?php the_post_thumbnail(); ?>
+                                                <?php else : ?>
+                                                    <img src="<?php echo get_template_directory_uri(); ?>/img/noimg.png" alt="">
+                                                <?php endif; ?>
+                                            </div><!-- /related-item-img -->
+                                            <div class="related-item-title"><?php the_title(); ?></div><!-- /related-item-title -->
+                                        </a><!-- /related-item -->
 
-                                <a class="related-item" href="">
-                                    <div class="related-item-img"><img src="img/entry1.png" alt=""></div><!-- /related-item-img -->
-                                    <div class="related-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</div><!-- /related-item-title -->
-                                </a><!-- /related-item -->
+                                    <?php endwhile; ?>
 
-                            </div><!-- /related-items -->
-                        </div><!-- /entry-related -->
+                                </div><!-- /related-items -->
+                            </div><!-- /entry-related -->
+
+                        <?php endif; ?>
+                        <?php wp_reset_postdata(); ?>
 
                     </article> <!-- /entry -->
                 <?php endwhile; ?>
