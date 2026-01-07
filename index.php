@@ -56,21 +56,35 @@
                     <?php while (have_posts()) : the_post(); ?>
 
                         <!-- entry-item -->
-                        <a href="#" class="entry-item">
+                        <a href="<?php the_permalink(); ?>" class="entry-item">
                             <!-- entry-item-img -->
                             <div class="entry-item-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/img/entry1.png" alt="">
+                                <?php if (has_post_thumbnail()) : ?>
+                                    <?php the_post_thumbnail(); ?>
+                                <?php else : ?>
+                                    <img src="<?php echo get_template_directory_uri(); ?>/img/noimg.png" alt="">
+                                <?php endif; ?>
                             </div><!-- /entry-item-img -->
 
                             <!-- entry-item-body -->
                             <div class="entry-item-body">
                                 <div class="entry-item-meta">
-                                    <div class="entry-item-tag">カテゴリ名</div><!-- /entry-item-tag -->
-                                    <time class="entry-item-published" datetime="2019-01-01">2019/1/1</time><!-- /entry-item-published -->
+                                    <?php
+                                    $category = get_the_category();
+                                    if ($category[0]) : ?>
+                                        <div class="entry-item-tag">
+                                            <?php echo $category[0]->cat_name; ?>
+                                        </div>
+                                    <?php endif; ?>
+                                    <!-- /entry-item-tag -->
+                                    <time class="entry-item-published" datetime="<?php the_time('c'); ?>"><?php the_time('Y/m/d'); ?></time>
+                                    <!-- /entry-item-published -->
                                 </div><!-- /entry-item-meta -->
-                                <h2 class="entry-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</h2><!-- /entry-item-title -->
+                                <h2 class="entry-item-title">
+                                    <?php the_title(); ?>
+                                </h2><!-- /entry-item-title -->
                                 <div class="entry-item-excerpt">
-                                    <p>文章の一部が入ります文章の一部が入ります文章の一部が入ります文章の一部が入ります文章の一部が入…</p>
+                                    <p><?php the_excerpt(); ?></p>
                                 </div><!-- /entry-item-excerpt -->
                             </div><!-- /entry-item-body -->
                         </a><!-- /entry-item -->
