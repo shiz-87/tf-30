@@ -40,6 +40,19 @@ function my_menu_init()
 }
 add_action('after_setup_theme', 'my_menu_init');
 
+function my_widget_init()
+{
+    register_sidebar(array(
+        'name' => 'サイドバーウィジェット',
+        'id' => 'sidebar-widget',
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget' => '</div>',
+        'before_title' => '<div class="widget-title">',
+        'after_title' => '</div>',
+    ));
+}
+add_action('widgets_init', 'my_widget_init');
+
 /**
  * アーカイブタイトル書き換え
  */
