@@ -5,36 +5,34 @@
     <div class="inner">
 
         <div class="pickup-items">
+            <?php $pickup_query = new WP_Query(
+                array(
+                    'posts_per_page' => 3,
+                    'tag' => 'pickup',
+                    'post_type' => 'post',
+                )
+            );
+            ?>
 
-            <a href="#" class="pickup-item">
-                <div class="pickup-item-img">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/pickup1.png" alt="">
-                    <div class="pickup-item-tag">カテゴリ名</div><!-- /pickup-item-tag -->
-                </div><!-- /pickup-item-img -->
-                <div class="pickup-item-body">
-                    <h2 class="pickup-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</h2><!-- /pickup-item-title -->
-                </div><!-- /pickup-item-body -->
-            </a><!-- /pickup-item -->
-
-            <a href="#" class="pickup-item">
-                <div class="pickup-item-img">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/pickup2.png" alt="">
-                    <div class="pickup-item-tag">カテゴリ名</div><!-- /pickup-item-tag -->
-                </div><!-- /pickup-item-img -->
-                <div class="pickup-item-body">
-                    <h2 class="pickup-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</h2><!-- /pickup-item-title -->
-                </div><!-- /pickup-item-body -->
-            </a><!-- /pickup-item -->
-
-            <a href="#" class="pickup-item">
-                <div class="pickup-item-img">
-                    <img src="<?php echo get_template_directory_uri(); ?>/img/pickup3.png" alt="">
-                    <div class="pickup-item-tag">カテゴリ名</div><!-- /pickup-item-tag -->
-                </div><!-- /pickup-item-img -->
-                <div class="pickup-item-body">
-                    <h2 class="pickup-item-title">記事のタイトルが入ります記事のタイトルが入ります記事のタイトルが入ります</h2><!-- /pickup-item-title -->
-                </div><!-- /pickup-item-body -->
-            </a><!-- /pickup-item -->
+            <?php if ($pickup_query->have_posts()) : ?>
+                <?php while ($pickup_query->have_posts()) : $pickup_query->the_post(); ?>
+                    <a href="#" class="pickup-item">
+                        <div class="pickup-item-img">
+                            <?php if (has_post_thumbnail()) : ?>
+                                <?php the_post_thumbnail(); ?>
+                            <?php else : ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/img/noimg.png" alt="">
+                            <?php endif; ?>
+                            <div class="pickup-item-tag">
+                                <?php my_the_post_category(false); ?>
+                            </div><!-- /pickup-item-tag -->
+                        </div><!-- /pickup-item-img -->
+                        <div class="pickup-item-body">
+                            <h2 class="pickup-item-title"><?php the_title(); ?></h2><!-- /pickup-item-title -->
+                        </div><!-- /pickup-item-body -->
+                    </a><!-- /pickup-item -->
+                <?php endwhile; ?>
+            <?php endif; ?>
 
         </div><!-- /pickup-items -->
 
