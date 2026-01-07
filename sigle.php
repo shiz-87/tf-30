@@ -8,20 +8,8 @@
         <main id="primary">
 
             <!-- breadcrumb -->
-            <div class="breadcrumb">
-                <span property="itemListElement" typeof="ListItem">
-                    <a property="item" typeof="WebPage" href="/" class="home"><span property="name">ホーム</span></a>
-                    <meta property="position" content="1">
-                </span>
-                <i class="fas fa-angle-right"></i>
-                <span property="itemListElement" typeof="ListItem">
-                    <a property="item" typeof="WebPage" href="#" class="taxonomy category"><span
-                            property="name">カテゴリ名</span></a>
-                    <meta property="position" content="2">
-                </span>
-                <i class="fas fa-angle-right"></i>
-                <span class="post post-post current-item">記事のタイトルが入ります</span>
-            </div><!-- /breadcrumb -->
+            <?php get_template_part('template-parts/breadcrumb'); ?>
+            <!-- /breadcrumb -->
 
             <!-- entry -->
             <article class="entry">

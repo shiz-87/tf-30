@@ -8,12 +8,8 @@
         <main id="primary">
 
             <!-- breadcrumb -->
-            <div class="breadcrumb">
-                <?php if (function_exists('bcn_display')) : ?>
-                    <?php bcn_display(); ?>
-                <?php endif; ?>
-            </div><!-- /breadcrumb -->
-
+            <?php get_template_part('template-parts/breadcrumb'); ?>
+            <!-- /breadcrumb -->
 
             <div class="archive-head m_description">
                 <div class="archive-lead">ARCHIVE</div>
